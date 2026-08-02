@@ -1,0 +1,17 @@
+{
+  "name": "@vendorlink/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@vendorlink/adapters": "workspace:*",
+    "@vendorlink/core": "workspace:*",
+    "@vendorlink/db": "workspace:*",
+    "playwright": "^1.49.1"
+  },
+  "devDependencies": { "typescript": "^5.7.2", "vitest": "^2.1.8" }
+}

@@ -1,0 +1,35 @@
+# Fly.io configuration for the Playwright worker.
+#
+# NOT DEPLOYED — no Fly credentials exist in this environment. Committed so the
+# deployment shape is reviewable, but it has never been applied.
+
+app = "vendorlink-worker"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
+  # §6.1: a run is capped at 10 minutes of wall clock.
+  RUN_WALL_CLOCK_MS = "600000"
+
+[[vm]]
+  # Chromium needs real memory; 512MB produces flaky renderer crashes that
+  # look like site failures and are not.
+  size = "performance-1x"
+  memory = "2gb"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "suspend"
+  auto_start_machines = true
+  # Scale to zero between runs; a browser worker idle is pure cost.
+  min_machines_running = 0
+
+  [http_service.concurrency]
+    type = "requests"
+    # §6.1: one browser context per run, and a run holds a whole machine.
+    hard_limit = 1
+    soft_limit = 1
