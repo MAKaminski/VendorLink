@@ -45,7 +45,7 @@ describe('column encryption', () => {
     const encrypted = encryptSecret('secret value here', KEY);
     const parts = encrypted.split('.');
     const data = Buffer.from(parts[3] as string, 'base64url');
-    data[0] ^= 0xff;
+    data[0] = (data[0] ?? 0) ^ 0xff;
     parts[3] = data.toString('base64url');
     expect(() => decryptSecret(parts.join('.'), KEY)).toThrow(DecryptionError);
   });

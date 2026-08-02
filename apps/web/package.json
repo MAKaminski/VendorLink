@@ -19,7 +19,8 @@
     "zod": "^3.24.1",
     "drizzle-orm": "^0.38.3",
     "@vendorlink/resolver": "workspace:*",
-    "@vendorlink/email": "workspace:*"
+    "@vendorlink/email": "workspace:*",
+    "@vendorlink/adapters": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19.0.2",

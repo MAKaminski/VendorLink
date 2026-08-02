@@ -44,6 +44,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@vendorlink/adapters':
+        specifier: workspace:*
+        version: link:../../packages/adapters
       '@vendorlink/core':
         specifier: workspace:*
         version: link:../../packages/core
