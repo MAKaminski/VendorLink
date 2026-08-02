@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-surface-sunken text-ink antialiased;
+    font-feature-settings: 'tnum' 1;
+  }
+  /* Tabular numerals throughout: this is a data product and columns of
+     figures should line up. */
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+}

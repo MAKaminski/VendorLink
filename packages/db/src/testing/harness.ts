@@ -9,9 +9,8 @@ import { tenants, users, tenantMembers, vendorProfiles } from '../schema/index';
 /**
  * Test database harness.
  *
- * Each suite gets its own database cloned from a migrated template, so suites
- * are isolated and none of them pay the migration cost. The template is
- * created once per process.
+ * Each suite gets its own freshly-migrated database, so suites are isolated
+ * and can run in any order.
  *
  * This runs against the local cluster from `scripts/dev-db.sh`; hosted
  * Postgres is unreachable from the build container (raw :5432 is blocked), and
@@ -19,7 +18,6 @@ import { tenants, users, tenantMembers, vendorProfiles } from '../schema/index';
  * being tested are enforced by Postgres, not by application code.
  */
 
-const TEMPLATE_DB = 'vendorlink_test_template';
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', '..');
 
 function adminUrl(database: string): string {
@@ -44,21 +42,6 @@ function psql(database: string, statement: string): void {
   );
 }
 
-let templateReady: Promise<void> | null = null;
-
-async function ensureTemplate(): Promise<void> {
-  templateReady ??= (async () => {
-    try {
-      psql('postgres', `DROP DATABASE IF EXISTS ${TEMPLATE_DB}`);
-    } catch {
-      // A concurrent worker may hold it; the CREATE below will tell us.
-    }
-    psql('postgres', `CREATE DATABASE ${TEMPLATE_DB}`);
-    await runMigrations(adminUrl(TEMPLATE_DB));
-  })();
-  return templateReady;
-}
-
 export interface TestDatabase {
   db: Database;
   url: string;
@@ -66,13 +49,21 @@ export interface TestDatabase {
   close: () => Promise<void>;
 }
 
-/** Create a fresh database for one suite. */
+/**
+ * Create a fresh database for one suite and migrate it.
+ *
+ * An earlier version cloned a shared migrated template, which is faster but
+ * needs cross-process coordination: Vitest runs projects in parallel, and two
+ * workers racing to build the same template collide on `CREATE DATABASE`.
+ * Migrating each database directly costs a few hundred milliseconds and needs
+ * no coordination at all, which is the better trade for a suite this size.
+ */
 export async function createTestDatabase(): Promise<TestDatabase> {
-  await ensureTemplate();
   const name = `vl_test_${randomUUID().replace(/-/g, '').slice(0, 16)}`;
-  psql('postgres', `CREATE DATABASE ${name} TEMPLATE ${TEMPLATE_DB}`);
+  psql('postgres', `CREATE DATABASE ${name}`);
 
   const url = adminUrl(name);
+  await runMigrations(url);
   const { db, close } = createDatabase({ url, max: 4 });
 
   return {
