@@ -2,7 +2,8 @@
 
 import { z } from 'zod';
 import { DirectoryRepository } from '@vendorlink/db';
-import { apiContext, db } from '@/lib/context';
+import { apiContext, db, mailer, objectStore } from '@/lib/context';
+import { runEmailTask } from '@/lib/run-email-task';
 
 const schema = z.object({
   pmCompanyId: z.string().uuid(),
@@ -60,6 +61,21 @@ export async function createConnection(input: {
       });
     }
     await ctx.repos.runs.recomputeStatus(run.id);
+
+    // Execute the email track inline. A durable queue (Inngest) owns this in
+    // production; running it here keeps the one-click promise intact without a
+    // queue, and the task's own state machine is what makes it resumable
+    // either way.
+    const emailTask = (await ctx.repos.tasks.listForRun(run.id)).find((t) => t.kind === 'EMAIL');
+    if (emailTask) {
+      await runEmailTask(emailTask.id, {
+        db: db(),
+        repos: ctx.repos,
+        mailer: mailer(),
+        store: objectStore(),
+        appBaseUrl: process.env.APP_BASE_URL ?? 'http://localhost:3000',
+      });
+    }
   }
 
   return { runId: run.id };

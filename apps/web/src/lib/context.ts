@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import type { AuthSession, ObjectStore } from '@vendorlink/core';
-import { LocalObjectStore } from '@vendorlink/core';
+import type { AuthSession, Mailer, ObjectStore } from '@vendorlink/core';
+import { LocalMailer, LocalObjectStore } from '@vendorlink/core';
 import { createDatabase, repositoriesFor, type Database, type TenantRepositories } from '@vendorlink/db';
 import { LocalAuthProvider, SESSION_COOKIE } from './auth';
 
@@ -24,6 +24,17 @@ export function objectStore(): ObjectStore {
   // An S3 implementation slots in here when R2/Supabase credentials exist;
   // callers only ever see the ObjectStore interface.
   return new LocalObjectStore();
+}
+
+/**
+ * The mailer.
+ *
+ * A Resend implementation slots in when `RESEND_API_KEY` is present; without
+ * one, messages are written as `.eml` files to a fixture inbox so the send
+ * path stays exercisable end to end.
+ */
+export function mailer(): Mailer {
+  return new LocalMailer();
 }
 
 export function authProvider(): LocalAuthProvider {

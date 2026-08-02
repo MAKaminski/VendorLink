@@ -18,7 +18,8 @@
     "react-dom": "^19.0.0",
     "zod": "^3.24.1",
     "drizzle-orm": "^0.38.3",
-    "@vendorlink/resolver": "workspace:*"
+    "@vendorlink/resolver": "workspace:*",
+    "@vendorlink/email": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19.0.2",
