@@ -41,6 +41,9 @@ importers:
       '@vendorlink/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@vendorlink/resolver':
+        specifier: workspace:*
+        version: link:../../packages/resolver
       drizzle-orm:
         specifier: ^0.38.3
         version: 0.38.4(@types/react@19.2.18)(postgres@3.4.9)(react@19.2.8)
@@ -94,6 +97,9 @@ importers:
       '@vendorlink/core':
         specifier: workspace:*
         version: link:../core
+      '@vendorlink/resolver':
+        specifier: workspace:*
+        version: link:../resolver
       drizzle-orm:
         specifier: ^0.38.3
         version: 0.38.4(@types/react@19.2.18)(postgres@3.4.9)(react@19.2.8)
@@ -110,6 +116,22 @@ importers:
       tsx:
         specifier: ^4.19.2
         version: 4.23.1
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.1)
+
+  packages/resolver:
+    dependencies:
+      '@vendorlink/core':
+        specifier: workspace:*
+        version: link:../core
+      zod:
+        specifier: ^3.24.1
+        version: 3.25.76
+    devDependencies:
       typescript:
         specifier: ^5.7.2
         version: 5.9.3

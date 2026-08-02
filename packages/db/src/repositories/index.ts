@@ -2,6 +2,7 @@ export * from './base';
 export * from './profile';
 export * from './runs';
 export * from './directory';
+export * from './contact-store';
 
 import type { Database } from '../client';
 import { DocumentRepository, VendorProfileRepository } from './profile';
