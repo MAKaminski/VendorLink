@@ -3,9 +3,9 @@ import {
   COMPLETENESS_NAG_THRESHOLD,
   computeCompleteness,
   shouldNag,
-} from '../src/completeness.js';
-import { vendorProfileSchema } from '../src/profile.js';
-import { completeProfile } from './fixtures/profile.js';
+} from '../src/completeness';
+import { vendorProfileSchema } from '../src/profile';
+import { completeProfile } from './fixtures/profile';
 
 describe('completeness', () => {
   it('scores a fully populated profile at 100', () => {

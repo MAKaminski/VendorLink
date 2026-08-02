@@ -1,4 +1,4 @@
-import type { VendorProfile } from './profile.js';
+import type { VendorProfile } from './profile';
 
 /**
  * Profile completeness.

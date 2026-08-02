@@ -1,4 +1,4 @@
-import type { FetchResult, HttpFetcher } from './types.js';
+import type { FetchResult, HttpFetcher } from './types';
 
 /**
  * HttpFetcher over the platform `fetch`.

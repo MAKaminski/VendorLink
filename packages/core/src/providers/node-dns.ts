@@ -1,5 +1,5 @@
 import { promises as dns } from 'node:dns';
-import type { DnsResolver, MxRecord } from './types.js';
+import type { DnsResolver, MxRecord } from './types';
 
 /**
  * DNS over the platform resolver, used by Engine #1's S5 verification step and

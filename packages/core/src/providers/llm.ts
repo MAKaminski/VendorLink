@@ -1,7 +1,7 @@
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { stableHash } from '../crypto.js';
-import { LlmSchemaError, type LlmClient, type LlmJsonRequest, type LlmJsonResponse } from './types.js';
+import { stableHash } from '../crypto';
+import { LlmSchemaError, type LlmClient, type LlmJsonRequest, type LlmJsonResponse } from './types';
 
 /**
  * LLM access.

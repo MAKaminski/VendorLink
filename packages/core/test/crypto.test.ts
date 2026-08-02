@@ -9,7 +9,7 @@ import {
   MissingEncryptionKeyError,
   safeEqual,
   stableHash,
-} from '../src/crypto.js';
+} from '../src/crypto';
 
 const KEY = randomBytes(32);
 

@@ -11,8 +11,8 @@ import {
   normalizeState,
   parseCurrencyToCents,
   truncateToLength,
-} from '../src/format.js';
-import { TRADES } from '../src/trades.js';
+} from '../src/format';
+import { TRADES } from '../src/trades';
 
 describe('money', () => {
   it('renders cents in the shapes forms ask for', () => {

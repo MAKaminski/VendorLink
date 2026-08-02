@@ -218,7 +218,7 @@ export class LlmSchemaError extends Error {
 // Auth
 // ---------------------------------------------------------------------------
 
-import type { TenantRole } from '../enums.js';
+import type { TenantRole } from '../enums';
 
 export interface AuthenticatedUser {
   userId: string;

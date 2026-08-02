@@ -5,8 +5,8 @@ import {
   policyTypeSchema,
   serviceAreaKindSchema,
   usStateSchema,
-} from './enums.js';
-import { tradeSlugSchema } from './trades.js';
+} from './enums';
+import { tradeSlugSchema } from './trades';
 
 /**
  * The canonical Vendor Profile.

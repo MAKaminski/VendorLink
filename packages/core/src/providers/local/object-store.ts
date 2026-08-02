@@ -1,13 +1,13 @@
 import { createHmac, randomUUID } from 'node:crypto';
 import { mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve, sep } from 'node:path';
-import { sha256Hex, safeEqual } from '../../crypto.js';
+import { sha256Hex, safeEqual } from '../../crypto';
 import type {
   ObjectStore,
   PresignOptions,
   PutObjectInput,
   StoredObject,
-} from '../types.js';
+} from '../types';
 
 /**
  * Filesystem-backed ObjectStore.

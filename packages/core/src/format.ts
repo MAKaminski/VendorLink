@@ -1,4 +1,4 @@
-import { US_STATE_NAMES, type UsState, US_STATES } from './enums.js';
+import { US_STATE_NAMES, type UsState, US_STATES } from './enums';
 
 /**
  * Value transforms.

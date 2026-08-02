@@ -1,4 +1,4 @@
-import type { VendorProfile } from '../../src/profile.js';
+import type { VendorProfile } from '../../src/profile';
 
 /**
  * Builder for a complete, valid profile that tests then subtract from.

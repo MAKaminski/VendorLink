@@ -6,7 +6,7 @@ import type {
   Mailer,
   SendMailInput,
   SendMailResult,
-} from '../types.js';
+} from '../types';
 
 /**
  * Mailer that writes RFC-822 `.eml` files to a directory instead of sending.
