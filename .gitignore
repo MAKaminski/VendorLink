@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.next/
+.turbo/
+coverage/
+
+# Local Postgres data directory created by scripts/dev-db.sh
+.pgdata/
+*.pid
+
+# Local object-store shim + fixture inbox (dev/test artifacts, never committed)
+.localstore/
+.fixture-inbox/
+.artifacts/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editors / OS
+.DS_Store
+*.log
