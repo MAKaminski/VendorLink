@@ -5,7 +5,6 @@ import {
   doublePrecision,
   index,
   integer,
-  pgTable,
   text,
   timestamp,
   uniqueIndex,
@@ -18,11 +17,12 @@ import {
   TASK_KINDS,
   TASK_STATUSES,
 } from '@vendorlink/core';
+import { vendorlink } from './schema';
 import { enumColumn, jsonbColumn } from './helpers';
 import { tenants } from './tenants';
 import { pmChannels, pmCompanies, pmContacts, formSchemas } from './directory';
 
-export const connectionRuns = pgTable(
+export const connectionRuns = vendorlink.table(
   'connection_runs',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -49,7 +49,7 @@ export const connectionRuns = pgTable(
   ],
 );
 
-export const connectionTasks = pgTable(
+export const connectionTasks = vendorlink.table(
   'connection_tasks',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -99,7 +99,7 @@ export const connectionTasks = pgTable(
  * and a trigger enforces it, because this is the trace an operator relies on
  * to understand what the automation did.
  */
-export const taskEvents = pgTable(
+export const taskEvents = vendorlink.table(
   'task_events',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -123,7 +123,7 @@ export const taskEvents = pgTable(
  * Also append-only. Secret values (EIN, bank details) are stored as a redacted
  * marker plus a reference — never the literal, per §10.
  */
-export const portalFieldWrites = pgTable(
+export const portalFieldWrites = vendorlink.table(
   'portal_field_writes',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -147,7 +147,7 @@ export const portalFieldWrites = pgTable(
   (t) => [index('portal_field_writes_task_idx').on(t.taskId)],
 );
 
-export const emailMessages = pgTable(
+export const emailMessages = vendorlink.table(
   'email_messages',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -179,7 +179,7 @@ export const emailMessages = pgTable(
   ],
 );
 
-export const pmReplies = pgTable(
+export const pmReplies = vendorlink.table(
   'pm_replies',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -207,7 +207,7 @@ export const pmReplies = pgTable(
  * Per-tenant daily send counter backing the §5.5 warm-up governor. Kept in the
  * database rather than in memory so the cap holds across worker processes.
  */
-export const sendCounters = pgTable(
+export const sendCounters = vendorlink.table(
   'send_counters',
   {
     tenantId: uuid('tenant_id')
@@ -223,7 +223,7 @@ export const sendCounters = pgTable(
  * Global politeness ledger: one row per PM domain recording the last run start,
  * enforcing §6.1's "1 run per PM domain per 90 seconds across all tenants".
  */
-export const domainThrottle = pgTable('domain_throttle', {
+export const domainThrottle = vendorlink.table('domain_throttle', {
   domain: text('domain').primaryKey(),
   lastRunAt: timestamp('last_run_at', { withTimezone: true }).notNull(),
   runCount: bigint('run_count', { mode: 'number' }).notNull().default(0),

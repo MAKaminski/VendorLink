@@ -14,6 +14,18 @@ export const dynamic = 'force-dynamic';
 
 const signingKey = process.env.LOCAL_STORAGE_SIGNING_KEY ?? 'dev-only-signing-key';
 
+/**
+ * This route serves the *local* store only.
+ *
+ * With Supabase Storage configured, `presignGet` returns an absolute
+ * Storage-signed URL and nothing routes through here. Refusing explicitly
+ * beats falling through to a filesystem read that cannot succeed on a
+ * serverless host and would fail with something unrelated to the real cause.
+ */
+function localStoreDisabled(): boolean {
+  return Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY);
+}
+
 function verify(request: Request, key: string, method: 'GET' | 'PUT') {
   const url = new URL(request.url);
   const expires = Number.parseInt(url.searchParams.get('expires') ?? '', 10);
@@ -47,6 +59,13 @@ export async function GET(
   request: Request,
   { params }: { params: Promise<{ key: string[] }> },
 ) {
+  if (localStoreDisabled()) {
+    return NextResponse.json(
+      { error: 'object storage is served by Supabase Storage in this environment' },
+      { status: 404 },
+    );
+  }
+
   const key = (await params).key.map(decodeURIComponent).join('/');
   const check = verify(request, key, 'GET');
   if (!check.ok) return NextResponse.json({ error: check.reason }, { status: check.status });
@@ -72,6 +91,13 @@ export async function PUT(
   request: Request,
   { params }: { params: Promise<{ key: string[] }> },
 ) {
+  if (localStoreDisabled()) {
+    return NextResponse.json(
+      { error: 'object storage is served by Supabase Storage in this environment' },
+      { status: 404 },
+    );
+  }
+
   const key = (await params).key.map(decodeURIComponent).join('/');
   const check = verify(request, key, 'PUT');
   if (!check.ok) return NextResponse.json({ error: check.reason }, { status: check.status });

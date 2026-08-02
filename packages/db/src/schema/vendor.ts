@@ -4,7 +4,6 @@ import {
   doublePrecision,
   index,
   integer,
-  pgTable,
   text,
   timestamp,
   uuid,
@@ -16,10 +15,11 @@ import {
   TRADE_SLUGS,
   US_STATES,
 } from '@vendorlink/core';
+import { vendorlink } from './schema';
 import { enumColumn, jsonbColumn } from './helpers';
 import { tenants } from './tenants';
 
-export const vendorTrades = pgTable(
+export const vendorTrades = vendorlink.table(
   'vendor_trades',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -34,7 +34,7 @@ export const vendorTrades = pgTable(
   (t) => [index('vendor_trades_tenant_idx').on(t.tenantId, t.tradeSlug)],
 );
 
-export const vendorServiceAreas = pgTable(
+export const vendorServiceAreas = vendorlink.table(
   'vendor_service_areas',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -52,7 +52,7 @@ export const vendorServiceAreas = pgTable(
   (t) => [index('vendor_service_areas_tenant_idx').on(t.tenantId)],
 );
 
-export const documents = pgTable(
+export const documents = vendorlink.table(
   'documents',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -79,7 +79,7 @@ export const documents = pgTable(
   ],
 );
 
-export const vendorLicenses = pgTable(
+export const vendorLicenses = vendorlink.table(
   'vendor_licenses',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -101,7 +101,7 @@ export const vendorLicenses = pgTable(
  * Insurance limits are integers so §7.1's fit banner can machine-compare them
  * against each PM's stated minimums and warn *before* a submission is wasted.
  */
-export const vendorInsurance = pgTable(
+export const vendorInsurance = vendorlink.table(
   'vendor_insurance',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -134,7 +134,7 @@ export const vendorInsurance = pgTable(
  * Claude's reading of an uploaded COI/W-9. Never written straight to the
  * profile: §4.1 requires human confirmation, so `confirmedAt` gates promotion.
  */
-export const documentExtractions = pgTable(
+export const documentExtractions = vendorlink.table(
   'document_extractions',
   {
     id: uuid('id').primaryKey().defaultRandom(),

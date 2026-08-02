@@ -4,7 +4,6 @@ import {
   doublePrecision,
   index,
   integer,
-  pgTable,
   text,
   timestamp,
   uniqueIndex,
@@ -18,6 +17,7 @@ import {
   PLATFORM_SLUGS,
   US_STATES,
 } from '@vendorlink/core';
+import { vendorlink } from './schema';
 import { enumColumn, jsonbColumn } from './helpers';
 import { tenants } from './tenants';
 
@@ -27,7 +27,7 @@ import { tenants } from './tenants';
  * suppresses an address for everyone; one tenant's confirmed reply boosts it
  * for everyone.
  */
-export const pmCompanies = pgTable(
+export const pmCompanies = vendorlink.table(
   'pm_companies',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -65,7 +65,7 @@ export const pmCompanies = pgTable(
  * company, never a single address, so the UI can offer "not right? choose
  * another" without re-running discovery.
  */
-export const pmContacts = pgTable(
+export const pmContacts = vendorlink.table(
   'pm_contacts',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -99,7 +99,7 @@ export const pmContacts = pgTable(
   ],
 );
 
-export const pmChannels = pgTable(
+export const pmChannels = vendorlink.table(
   'pm_channels',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -127,7 +127,7 @@ export const pmChannels = pgTable(
 );
 
 /** Drives the §7.1 fit banner: the gap check that prevents a wasted send. */
-export const pmRequirements = pgTable(
+export const pmRequirements = vendorlink.table(
   'pm_requirements',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -155,7 +155,7 @@ export const pmRequirements = pgTable(
  * later tenant replays a known-good schema in seconds. Versioned, and
  * invalidated when the DOM hash stops matching.
  */
-export const formSchemas = pgTable(
+export const formSchemas = vendorlink.table(
   'form_schemas',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -183,7 +183,7 @@ export const formSchemas = pgTable(
  * and the resolver folds them back into scoring — this is where "every
  * tenant's activity improves the directory for all tenants" actually happens.
  */
-export const globalContactSignals = pgTable(
+export const globalContactSignals = vendorlink.table(
   'global_contact_signals',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -201,7 +201,7 @@ export const globalContactSignals = pgTable(
 );
 
 /** Global suppression list. A hard bounce anywhere stops sending everywhere. */
-export const emailSuppressions = pgTable(
+export const emailSuppressions = vendorlink.table(
   'email_suppressions',
   {
     email: text('email').primaryKey(),

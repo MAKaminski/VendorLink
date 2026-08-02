@@ -1,3 +1,4 @@
+export * from './schema';
 export * from './helpers';
 export * from './tenants';
 export * from './vendor';

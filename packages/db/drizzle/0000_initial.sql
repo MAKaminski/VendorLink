@@ -1,4 +1,6 @@
-CREATE TABLE "sessions" (
+CREATE SCHEMA "vendorlink";
+--> statement-breakpoint
+CREATE TABLE "vendorlink"."sessions" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"token_hash" text NOT NULL,
 	"user_id" uuid NOT NULL,
@@ -7,7 +9,7 @@ CREATE TABLE "sessions" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "tenant_members" (
+CREATE TABLE "vendorlink"."tenant_members" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"tenant_id" uuid NOT NULL,
 	"user_id" uuid NOT NULL,
@@ -15,7 +17,7 @@ CREATE TABLE "tenant_members" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "tenants" (
+CREATE TABLE "vendorlink"."tenants" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" text NOT NULL,
 	"external_org_id" text,
@@ -33,7 +35,7 @@ CREATE TABLE "tenants" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "users" (
+CREATE TABLE "vendorlink"."users" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"email" text NOT NULL,
 	"name" text,
@@ -42,7 +44,7 @@ CREATE TABLE "users" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "vendor_profiles" (
+CREATE TABLE "vendorlink"."vendor_profiles" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"tenant_id" uuid NOT NULL,
 	"legal_name" text NOT NULL,
@@ -88,7 +90,7 @@ CREATE TABLE "vendor_profiles" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "document_extractions" (
+CREATE TABLE "vendorlink"."document_extractions" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"tenant_id" uuid NOT NULL,
 	"document_id" uuid NOT NULL,
@@ -100,7 +102,7 @@ CREATE TABLE "document_extractions" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "documents" (
+CREATE TABLE "vendorlink"."documents" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"tenant_id" uuid NOT NULL,
 	"kind" text NOT NULL,
@@ -117,7 +119,7 @@ CREATE TABLE "documents" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "vendor_insurance" (
+CREATE TABLE "vendorlink"."vendor_insurance" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"tenant_id" uuid NOT NULL,
 	"policy_type" text NOT NULL,
@@ -137,7 +139,7 @@ CREATE TABLE "vendor_insurance" (
 	"agent_phone" text
 );
 --> statement-breakpoint
-CREATE TABLE "vendor_licenses" (
+CREATE TABLE "vendorlink"."vendor_licenses" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"tenant_id" uuid NOT NULL,
 	"license_type" text NOT NULL,
@@ -149,7 +151,7 @@ CREATE TABLE "vendor_licenses" (
 	"document_id" uuid
 );
 --> statement-breakpoint
-CREATE TABLE "vendor_service_areas" (
+CREATE TABLE "vendorlink"."vendor_service_areas" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"tenant_id" uuid NOT NULL,
 	"kind" text NOT NULL,
@@ -161,7 +163,7 @@ CREATE TABLE "vendor_service_areas" (
 	"states" text[] DEFAULT '{}' NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "vendor_trades" (
+CREATE TABLE "vendorlink"."vendor_trades" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"tenant_id" uuid NOT NULL,
 	"trade_slug" text NOT NULL,
@@ -170,14 +172,14 @@ CREATE TABLE "vendor_trades" (
 	"is_primary" boolean DEFAULT false NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "email_suppressions" (
+CREATE TABLE "vendorlink"."email_suppressions" (
 	"email" text PRIMARY KEY NOT NULL,
 	"reason" text NOT NULL,
 	"detail" text,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "form_schemas" (
+CREATE TABLE "vendorlink"."form_schemas" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"pm_channel_id" uuid NOT NULL,
 	"version" integer DEFAULT 1 NOT NULL,
@@ -190,7 +192,7 @@ CREATE TABLE "form_schemas" (
 	"is_active" boolean DEFAULT true NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "global_contact_signals" (
+CREATE TABLE "vendorlink"."global_contact_signals" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"email" text NOT NULL,
 	"pm_company_id" uuid,
@@ -200,7 +202,7 @@ CREATE TABLE "global_contact_signals" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "pm_channels" (
+CREATE TABLE "vendorlink"."pm_channels" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"pm_company_id" uuid NOT NULL,
 	"kind" text NOT NULL,
@@ -217,7 +219,7 @@ CREATE TABLE "pm_channels" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "pm_companies" (
+CREATE TABLE "vendorlink"."pm_companies" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" text NOT NULL,
 	"legal_name" text,
@@ -237,7 +239,7 @@ CREATE TABLE "pm_companies" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "pm_contacts" (
+CREATE TABLE "vendorlink"."pm_contacts" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"pm_company_id" uuid NOT NULL,
 	"email" text NOT NULL,
@@ -259,7 +261,7 @@ CREATE TABLE "pm_contacts" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "pm_requirements" (
+CREATE TABLE "vendorlink"."pm_requirements" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"pm_company_id" uuid NOT NULL,
 	"min_gl_each_occurrence_cents" bigint,
@@ -276,7 +278,7 @@ CREATE TABLE "pm_requirements" (
 	"extracted_at" timestamp with time zone
 );
 --> statement-breakpoint
-CREATE TABLE "connection_runs" (
+CREATE TABLE "vendorlink"."connection_runs" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"tenant_id" uuid NOT NULL,
 	"pm_company_id" uuid NOT NULL,
@@ -287,7 +289,7 @@ CREATE TABLE "connection_runs" (
 	"finished_at" timestamp with time zone
 );
 --> statement-breakpoint
-CREATE TABLE "connection_tasks" (
+CREATE TABLE "vendorlink"."connection_tasks" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"run_id" uuid NOT NULL,
 	"tenant_id" uuid NOT NULL,
@@ -308,13 +310,13 @@ CREATE TABLE "connection_tasks" (
 	"confirmation_number" text
 );
 --> statement-breakpoint
-CREATE TABLE "domain_throttle" (
+CREATE TABLE "vendorlink"."domain_throttle" (
 	"domain" text PRIMARY KEY NOT NULL,
 	"last_run_at" timestamp with time zone NOT NULL,
 	"run_count" bigint DEFAULT 0 NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "email_messages" (
+CREATE TABLE "vendorlink"."email_messages" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"task_id" uuid NOT NULL,
 	"tenant_id" uuid NOT NULL,
@@ -332,7 +334,7 @@ CREATE TABLE "email_messages" (
 	"replied_at" timestamp with time zone
 );
 --> statement-breakpoint
-CREATE TABLE "pm_replies" (
+CREATE TABLE "vendorlink"."pm_replies" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"pm_company_id" uuid NOT NULL,
 	"tenant_id" uuid NOT NULL,
@@ -345,7 +347,7 @@ CREATE TABLE "pm_replies" (
 	"extracted" jsonb
 );
 --> statement-breakpoint
-CREATE TABLE "portal_field_writes" (
+CREATE TABLE "vendorlink"."portal_field_writes" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"task_id" uuid NOT NULL,
 	"tenant_id" uuid NOT NULL,
@@ -359,13 +361,13 @@ CREATE TABLE "portal_field_writes" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "send_counters" (
+CREATE TABLE "vendorlink"."send_counters" (
 	"tenant_id" uuid NOT NULL,
 	"day" text NOT NULL,
 	"sent" integer DEFAULT 0 NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "task_events" (
+CREATE TABLE "vendorlink"."task_events" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"task_id" uuid NOT NULL,
 	"tenant_id" uuid NOT NULL,
@@ -376,82 +378,82 @@ CREATE TABLE "task_events" (
 	"data" jsonb
 );
 --> statement-breakpoint
-ALTER TABLE "sessions" ADD CONSTRAINT "sessions_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "sessions" ADD CONSTRAINT "sessions_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "tenant_members" ADD CONSTRAINT "tenant_members_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "tenant_members" ADD CONSTRAINT "tenant_members_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "vendor_profiles" ADD CONSTRAINT "vendor_profiles_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "document_extractions" ADD CONSTRAINT "document_extractions_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "document_extractions" ADD CONSTRAINT "document_extractions_document_id_documents_id_fk" FOREIGN KEY ("document_id") REFERENCES "public"."documents"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "documents" ADD CONSTRAINT "documents_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "vendor_insurance" ADD CONSTRAINT "vendor_insurance_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "vendor_insurance" ADD CONSTRAINT "vendor_insurance_document_id_documents_id_fk" FOREIGN KEY ("document_id") REFERENCES "public"."documents"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "vendor_licenses" ADD CONSTRAINT "vendor_licenses_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "vendor_licenses" ADD CONSTRAINT "vendor_licenses_document_id_documents_id_fk" FOREIGN KEY ("document_id") REFERENCES "public"."documents"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "vendor_service_areas" ADD CONSTRAINT "vendor_service_areas_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "vendor_trades" ADD CONSTRAINT "vendor_trades_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "form_schemas" ADD CONSTRAINT "form_schemas_pm_channel_id_pm_channels_id_fk" FOREIGN KEY ("pm_channel_id") REFERENCES "public"."pm_channels"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "global_contact_signals" ADD CONSTRAINT "global_contact_signals_pm_company_id_pm_companies_id_fk" FOREIGN KEY ("pm_company_id") REFERENCES "public"."pm_companies"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "global_contact_signals" ADD CONSTRAINT "global_contact_signals_source_tenant_id_tenants_id_fk" FOREIGN KEY ("source_tenant_id") REFERENCES "public"."tenants"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "pm_channels" ADD CONSTRAINT "pm_channels_pm_company_id_pm_companies_id_fk" FOREIGN KEY ("pm_company_id") REFERENCES "public"."pm_companies"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "pm_companies" ADD CONSTRAINT "pm_companies_submitted_by_tenant_id_tenants_id_fk" FOREIGN KEY ("submitted_by_tenant_id") REFERENCES "public"."tenants"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "pm_contacts" ADD CONSTRAINT "pm_contacts_pm_company_id_pm_companies_id_fk" FOREIGN KEY ("pm_company_id") REFERENCES "public"."pm_companies"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "pm_requirements" ADD CONSTRAINT "pm_requirements_pm_company_id_pm_companies_id_fk" FOREIGN KEY ("pm_company_id") REFERENCES "public"."pm_companies"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "connection_runs" ADD CONSTRAINT "connection_runs_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "connection_runs" ADD CONSTRAINT "connection_runs_pm_company_id_pm_companies_id_fk" FOREIGN KEY ("pm_company_id") REFERENCES "public"."pm_companies"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "connection_tasks" ADD CONSTRAINT "connection_tasks_run_id_connection_runs_id_fk" FOREIGN KEY ("run_id") REFERENCES "public"."connection_runs"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "connection_tasks" ADD CONSTRAINT "connection_tasks_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "connection_tasks" ADD CONSTRAINT "connection_tasks_resolved_contact_id_pm_contacts_id_fk" FOREIGN KEY ("resolved_contact_id") REFERENCES "public"."pm_contacts"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "connection_tasks" ADD CONSTRAINT "connection_tasks_pm_channel_id_pm_channels_id_fk" FOREIGN KEY ("pm_channel_id") REFERENCES "public"."pm_channels"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "connection_tasks" ADD CONSTRAINT "connection_tasks_form_schema_id_form_schemas_id_fk" FOREIGN KEY ("form_schema_id") REFERENCES "public"."form_schemas"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "email_messages" ADD CONSTRAINT "email_messages_task_id_connection_tasks_id_fk" FOREIGN KEY ("task_id") REFERENCES "public"."connection_tasks"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "email_messages" ADD CONSTRAINT "email_messages_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "pm_replies" ADD CONSTRAINT "pm_replies_pm_company_id_pm_companies_id_fk" FOREIGN KEY ("pm_company_id") REFERENCES "public"."pm_companies"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "pm_replies" ADD CONSTRAINT "pm_replies_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "pm_replies" ADD CONSTRAINT "pm_replies_run_id_connection_runs_id_fk" FOREIGN KEY ("run_id") REFERENCES "public"."connection_runs"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "portal_field_writes" ADD CONSTRAINT "portal_field_writes_task_id_connection_tasks_id_fk" FOREIGN KEY ("task_id") REFERENCES "public"."connection_tasks"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "portal_field_writes" ADD CONSTRAINT "portal_field_writes_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "send_counters" ADD CONSTRAINT "send_counters_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "task_events" ADD CONSTRAINT "task_events_task_id_connection_tasks_id_fk" FOREIGN KEY ("task_id") REFERENCES "public"."connection_tasks"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "task_events" ADD CONSTRAINT "task_events_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-CREATE UNIQUE INDEX "sessions_token_hash_idx" ON "sessions" USING btree ("token_hash");--> statement-breakpoint
-CREATE INDEX "sessions_user_idx" ON "sessions" USING btree ("user_id");--> statement-breakpoint
-CREATE UNIQUE INDEX "tenant_members_tenant_user_idx" ON "tenant_members" USING btree ("tenant_id","user_id");--> statement-breakpoint
-CREATE INDEX "tenant_members_user_idx" ON "tenant_members" USING btree ("user_id");--> statement-breakpoint
-CREATE UNIQUE INDEX "tenants_external_org_id_idx" ON "tenants" USING btree ("external_org_id");--> statement-breakpoint
-CREATE UNIQUE INDEX "users_email_idx" ON "users" USING btree ("email");--> statement-breakpoint
-CREATE UNIQUE INDEX "vendor_profiles_tenant_idx" ON "vendor_profiles" USING btree ("tenant_id");--> statement-breakpoint
-CREATE INDEX "document_extractions_tenant_doc_idx" ON "document_extractions" USING btree ("tenant_id","document_id");--> statement-breakpoint
-CREATE INDEX "documents_tenant_kind_idx" ON "documents" USING btree ("tenant_id","kind","is_current");--> statement-breakpoint
-CREATE INDEX "documents_tenant_expiry_idx" ON "documents" USING btree ("tenant_id","expires_on");--> statement-breakpoint
-CREATE INDEX "vendor_insurance_tenant_type_idx" ON "vendor_insurance" USING btree ("tenant_id","policy_type");--> statement-breakpoint
-CREATE INDEX "vendor_insurance_tenant_expiry_idx" ON "vendor_insurance" USING btree ("tenant_id","expires_on");--> statement-breakpoint
-CREATE INDEX "vendor_licenses_tenant_expiry_idx" ON "vendor_licenses" USING btree ("tenant_id","expires_on");--> statement-breakpoint
-CREATE INDEX "vendor_service_areas_tenant_idx" ON "vendor_service_areas" USING btree ("tenant_id");--> statement-breakpoint
-CREATE INDEX "vendor_trades_tenant_idx" ON "vendor_trades" USING btree ("tenant_id","trade_slug");--> statement-breakpoint
-CREATE UNIQUE INDEX "form_schemas_channel_version_idx" ON "form_schemas" USING btree ("pm_channel_id","version");--> statement-breakpoint
-CREATE INDEX "form_schemas_channel_active_idx" ON "form_schemas" USING btree ("pm_channel_id","is_active");--> statement-breakpoint
-CREATE INDEX "global_contact_signals_email_idx" ON "global_contact_signals" USING btree ("email","signal");--> statement-breakpoint
-CREATE INDEX "pm_channels_company_idx" ON "pm_channels" USING btree ("pm_company_id","kind");--> statement-breakpoint
-CREATE UNIQUE INDEX "pm_channels_company_url_idx" ON "pm_channels" USING btree ("pm_company_id","url");--> statement-breakpoint
-CREATE UNIQUE INDEX "pm_companies_domain_idx" ON "pm_companies" USING btree ("domain");--> statement-breakpoint
-CREATE INDEX "pm_companies_state_idx" ON "pm_companies" USING btree ("hq_state");--> statement-breakpoint
-CREATE INDEX "pm_companies_crawl_idx" ON "pm_companies" USING btree ("crawl_status","last_crawled_at");--> statement-breakpoint
-CREATE UNIQUE INDEX "pm_contacts_company_email_idx" ON "pm_contacts" USING btree ("pm_company_id","email");--> statement-breakpoint
-CREATE INDEX "pm_contacts_company_rank_idx" ON "pm_contacts" USING btree ("pm_company_id","rank");--> statement-breakpoint
-CREATE UNIQUE INDEX "pm_requirements_company_idx" ON "pm_requirements" USING btree ("pm_company_id");--> statement-breakpoint
-CREATE UNIQUE INDEX "connection_runs_idempotency_idx" ON "connection_runs" USING btree ("idempotency_key");--> statement-breakpoint
-CREATE INDEX "connection_runs_tenant_created_idx" ON "connection_runs" USING btree ("tenant_id","created_at");--> statement-breakpoint
-CREATE INDEX "connection_runs_tenant_status_idx" ON "connection_runs" USING btree ("tenant_id","status");--> statement-breakpoint
-CREATE INDEX "connection_tasks_run_idx" ON "connection_tasks" USING btree ("run_id");--> statement-breakpoint
-CREATE INDEX "connection_tasks_tenant_status_idx" ON "connection_tasks" USING btree ("tenant_id","status");--> statement-breakpoint
-CREATE INDEX "connection_tasks_retry_idx" ON "connection_tasks" USING btree ("status","next_retry_at");--> statement-breakpoint
-CREATE UNIQUE INDEX "connection_tasks_unique_success_idx" ON "connection_tasks" USING btree ("tenant_id","pm_channel_id") WHERE "connection_tasks"."kind" = 'PORTAL' AND "connection_tasks"."status" = 'succeeded';--> statement-breakpoint
-CREATE INDEX "email_messages_tenant_idx" ON "email_messages" USING btree ("tenant_id");--> statement-breakpoint
-CREATE INDEX "email_messages_provider_idx" ON "email_messages" USING btree ("provider_message_id");--> statement-breakpoint
-CREATE INDEX "email_messages_task_idx" ON "email_messages" USING btree ("task_id");--> statement-breakpoint
-CREATE INDEX "pm_replies_tenant_idx" ON "pm_replies" USING btree ("tenant_id","received_at");--> statement-breakpoint
-CREATE INDEX "pm_replies_company_idx" ON "pm_replies" USING btree ("pm_company_id");--> statement-breakpoint
-CREATE INDEX "portal_field_writes_task_idx" ON "portal_field_writes" USING btree ("task_id");--> statement-breakpoint
-CREATE UNIQUE INDEX "send_counters_tenant_day_idx" ON "send_counters" USING btree ("tenant_id","day");--> statement-breakpoint
-CREATE INDEX "task_events_task_ts_idx" ON "task_events" USING btree ("task_id","ts");
+ALTER TABLE "vendorlink"."sessions" ADD CONSTRAINT "sessions_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "vendorlink"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."sessions" ADD CONSTRAINT "sessions_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."tenant_members" ADD CONSTRAINT "tenant_members_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."tenant_members" ADD CONSTRAINT "tenant_members_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "vendorlink"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."vendor_profiles" ADD CONSTRAINT "vendor_profiles_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."document_extractions" ADD CONSTRAINT "document_extractions_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."document_extractions" ADD CONSTRAINT "document_extractions_document_id_documents_id_fk" FOREIGN KEY ("document_id") REFERENCES "vendorlink"."documents"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."documents" ADD CONSTRAINT "documents_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."vendor_insurance" ADD CONSTRAINT "vendor_insurance_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."vendor_insurance" ADD CONSTRAINT "vendor_insurance_document_id_documents_id_fk" FOREIGN KEY ("document_id") REFERENCES "vendorlink"."documents"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."vendor_licenses" ADD CONSTRAINT "vendor_licenses_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."vendor_licenses" ADD CONSTRAINT "vendor_licenses_document_id_documents_id_fk" FOREIGN KEY ("document_id") REFERENCES "vendorlink"."documents"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."vendor_service_areas" ADD CONSTRAINT "vendor_service_areas_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."vendor_trades" ADD CONSTRAINT "vendor_trades_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."form_schemas" ADD CONSTRAINT "form_schemas_pm_channel_id_pm_channels_id_fk" FOREIGN KEY ("pm_channel_id") REFERENCES "vendorlink"."pm_channels"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."global_contact_signals" ADD CONSTRAINT "global_contact_signals_pm_company_id_pm_companies_id_fk" FOREIGN KEY ("pm_company_id") REFERENCES "vendorlink"."pm_companies"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."global_contact_signals" ADD CONSTRAINT "global_contact_signals_source_tenant_id_tenants_id_fk" FOREIGN KEY ("source_tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."pm_channels" ADD CONSTRAINT "pm_channels_pm_company_id_pm_companies_id_fk" FOREIGN KEY ("pm_company_id") REFERENCES "vendorlink"."pm_companies"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."pm_companies" ADD CONSTRAINT "pm_companies_submitted_by_tenant_id_tenants_id_fk" FOREIGN KEY ("submitted_by_tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."pm_contacts" ADD CONSTRAINT "pm_contacts_pm_company_id_pm_companies_id_fk" FOREIGN KEY ("pm_company_id") REFERENCES "vendorlink"."pm_companies"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."pm_requirements" ADD CONSTRAINT "pm_requirements_pm_company_id_pm_companies_id_fk" FOREIGN KEY ("pm_company_id") REFERENCES "vendorlink"."pm_companies"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."connection_runs" ADD CONSTRAINT "connection_runs_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."connection_runs" ADD CONSTRAINT "connection_runs_pm_company_id_pm_companies_id_fk" FOREIGN KEY ("pm_company_id") REFERENCES "vendorlink"."pm_companies"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."connection_tasks" ADD CONSTRAINT "connection_tasks_run_id_connection_runs_id_fk" FOREIGN KEY ("run_id") REFERENCES "vendorlink"."connection_runs"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."connection_tasks" ADD CONSTRAINT "connection_tasks_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."connection_tasks" ADD CONSTRAINT "connection_tasks_resolved_contact_id_pm_contacts_id_fk" FOREIGN KEY ("resolved_contact_id") REFERENCES "vendorlink"."pm_contacts"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."connection_tasks" ADD CONSTRAINT "connection_tasks_pm_channel_id_pm_channels_id_fk" FOREIGN KEY ("pm_channel_id") REFERENCES "vendorlink"."pm_channels"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."connection_tasks" ADD CONSTRAINT "connection_tasks_form_schema_id_form_schemas_id_fk" FOREIGN KEY ("form_schema_id") REFERENCES "vendorlink"."form_schemas"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."email_messages" ADD CONSTRAINT "email_messages_task_id_connection_tasks_id_fk" FOREIGN KEY ("task_id") REFERENCES "vendorlink"."connection_tasks"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."email_messages" ADD CONSTRAINT "email_messages_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."pm_replies" ADD CONSTRAINT "pm_replies_pm_company_id_pm_companies_id_fk" FOREIGN KEY ("pm_company_id") REFERENCES "vendorlink"."pm_companies"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."pm_replies" ADD CONSTRAINT "pm_replies_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."pm_replies" ADD CONSTRAINT "pm_replies_run_id_connection_runs_id_fk" FOREIGN KEY ("run_id") REFERENCES "vendorlink"."connection_runs"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."portal_field_writes" ADD CONSTRAINT "portal_field_writes_task_id_connection_tasks_id_fk" FOREIGN KEY ("task_id") REFERENCES "vendorlink"."connection_tasks"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."portal_field_writes" ADD CONSTRAINT "portal_field_writes_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."send_counters" ADD CONSTRAINT "send_counters_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."task_events" ADD CONSTRAINT "task_events_task_id_connection_tasks_id_fk" FOREIGN KEY ("task_id") REFERENCES "vendorlink"."connection_tasks"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "vendorlink"."task_events" ADD CONSTRAINT "task_events_tenant_id_tenants_id_fk" FOREIGN KEY ("tenant_id") REFERENCES "vendorlink"."tenants"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+CREATE UNIQUE INDEX "sessions_token_hash_idx" ON "vendorlink"."sessions" USING btree ("token_hash");--> statement-breakpoint
+CREATE INDEX "sessions_user_idx" ON "vendorlink"."sessions" USING btree ("user_id");--> statement-breakpoint
+CREATE UNIQUE INDEX "tenant_members_tenant_user_idx" ON "vendorlink"."tenant_members" USING btree ("tenant_id","user_id");--> statement-breakpoint
+CREATE INDEX "tenant_members_user_idx" ON "vendorlink"."tenant_members" USING btree ("user_id");--> statement-breakpoint
+CREATE UNIQUE INDEX "tenants_external_org_id_idx" ON "vendorlink"."tenants" USING btree ("external_org_id");--> statement-breakpoint
+CREATE UNIQUE INDEX "users_email_idx" ON "vendorlink"."users" USING btree ("email");--> statement-breakpoint
+CREATE UNIQUE INDEX "vendor_profiles_tenant_idx" ON "vendorlink"."vendor_profiles" USING btree ("tenant_id");--> statement-breakpoint
+CREATE INDEX "document_extractions_tenant_doc_idx" ON "vendorlink"."document_extractions" USING btree ("tenant_id","document_id");--> statement-breakpoint
+CREATE INDEX "documents_tenant_kind_idx" ON "vendorlink"."documents" USING btree ("tenant_id","kind","is_current");--> statement-breakpoint
+CREATE INDEX "documents_tenant_expiry_idx" ON "vendorlink"."documents" USING btree ("tenant_id","expires_on");--> statement-breakpoint
+CREATE INDEX "vendor_insurance_tenant_type_idx" ON "vendorlink"."vendor_insurance" USING btree ("tenant_id","policy_type");--> statement-breakpoint
+CREATE INDEX "vendor_insurance_tenant_expiry_idx" ON "vendorlink"."vendor_insurance" USING btree ("tenant_id","expires_on");--> statement-breakpoint
+CREATE INDEX "vendor_licenses_tenant_expiry_idx" ON "vendorlink"."vendor_licenses" USING btree ("tenant_id","expires_on");--> statement-breakpoint
+CREATE INDEX "vendor_service_areas_tenant_idx" ON "vendorlink"."vendor_service_areas" USING btree ("tenant_id");--> statement-breakpoint
+CREATE INDEX "vendor_trades_tenant_idx" ON "vendorlink"."vendor_trades" USING btree ("tenant_id","trade_slug");--> statement-breakpoint
+CREATE UNIQUE INDEX "form_schemas_channel_version_idx" ON "vendorlink"."form_schemas" USING btree ("pm_channel_id","version");--> statement-breakpoint
+CREATE INDEX "form_schemas_channel_active_idx" ON "vendorlink"."form_schemas" USING btree ("pm_channel_id","is_active");--> statement-breakpoint
+CREATE INDEX "global_contact_signals_email_idx" ON "vendorlink"."global_contact_signals" USING btree ("email","signal");--> statement-breakpoint
+CREATE INDEX "pm_channels_company_idx" ON "vendorlink"."pm_channels" USING btree ("pm_company_id","kind");--> statement-breakpoint
+CREATE UNIQUE INDEX "pm_channels_company_url_idx" ON "vendorlink"."pm_channels" USING btree ("pm_company_id","url");--> statement-breakpoint
+CREATE UNIQUE INDEX "pm_companies_domain_idx" ON "vendorlink"."pm_companies" USING btree ("domain");--> statement-breakpoint
+CREATE INDEX "pm_companies_state_idx" ON "vendorlink"."pm_companies" USING btree ("hq_state");--> statement-breakpoint
+CREATE INDEX "pm_companies_crawl_idx" ON "vendorlink"."pm_companies" USING btree ("crawl_status","last_crawled_at");--> statement-breakpoint
+CREATE UNIQUE INDEX "pm_contacts_company_email_idx" ON "vendorlink"."pm_contacts" USING btree ("pm_company_id","email");--> statement-breakpoint
+CREATE INDEX "pm_contacts_company_rank_idx" ON "vendorlink"."pm_contacts" USING btree ("pm_company_id","rank");--> statement-breakpoint
+CREATE UNIQUE INDEX "pm_requirements_company_idx" ON "vendorlink"."pm_requirements" USING btree ("pm_company_id");--> statement-breakpoint
+CREATE UNIQUE INDEX "connection_runs_idempotency_idx" ON "vendorlink"."connection_runs" USING btree ("idempotency_key");--> statement-breakpoint
+CREATE INDEX "connection_runs_tenant_created_idx" ON "vendorlink"."connection_runs" USING btree ("tenant_id","created_at");--> statement-breakpoint
+CREATE INDEX "connection_runs_tenant_status_idx" ON "vendorlink"."connection_runs" USING btree ("tenant_id","status");--> statement-breakpoint
+CREATE INDEX "connection_tasks_run_idx" ON "vendorlink"."connection_tasks" USING btree ("run_id");--> statement-breakpoint
+CREATE INDEX "connection_tasks_tenant_status_idx" ON "vendorlink"."connection_tasks" USING btree ("tenant_id","status");--> statement-breakpoint
+CREATE INDEX "connection_tasks_retry_idx" ON "vendorlink"."connection_tasks" USING btree ("status","next_retry_at");--> statement-breakpoint
+CREATE UNIQUE INDEX "connection_tasks_unique_success_idx" ON "vendorlink"."connection_tasks" USING btree ("tenant_id","pm_channel_id") WHERE "vendorlink"."connection_tasks"."kind" = 'PORTAL' AND "vendorlink"."connection_tasks"."status" = 'succeeded';--> statement-breakpoint
+CREATE INDEX "email_messages_tenant_idx" ON "vendorlink"."email_messages" USING btree ("tenant_id");--> statement-breakpoint
+CREATE INDEX "email_messages_provider_idx" ON "vendorlink"."email_messages" USING btree ("provider_message_id");--> statement-breakpoint
+CREATE INDEX "email_messages_task_idx" ON "vendorlink"."email_messages" USING btree ("task_id");--> statement-breakpoint
+CREATE INDEX "pm_replies_tenant_idx" ON "vendorlink"."pm_replies" USING btree ("tenant_id","received_at");--> statement-breakpoint
+CREATE INDEX "pm_replies_company_idx" ON "vendorlink"."pm_replies" USING btree ("pm_company_id");--> statement-breakpoint
+CREATE INDEX "portal_field_writes_task_idx" ON "vendorlink"."portal_field_writes" USING btree ("task_id");--> statement-breakpoint
+CREATE UNIQUE INDEX "send_counters_tenant_day_idx" ON "vendorlink"."send_counters" USING btree ("tenant_id","day");--> statement-breakpoint
+CREATE INDEX "task_events_task_ts_idx" ON "vendorlink"."task_events" USING btree ("task_id","ts");

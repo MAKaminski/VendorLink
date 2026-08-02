@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import type { AuthSession, Mailer, ObjectStore } from '@vendorlink/core';
-import { LocalMailer, LocalObjectStore } from '@vendorlink/core';
+import { hasSupabaseStorage, LocalMailer, LocalObjectStore, SupabaseObjectStore } from '@vendorlink/core';
 import { createDatabase, repositoriesFor, type Database, type TenantRepositories } from '@vendorlink/db';
 import { LocalAuthProvider, SESSION_COOKIE } from './auth';
 
@@ -20,10 +20,16 @@ export function db(): Database {
   return globalForDb.__vendorlinkDb.db;
 }
 
+/**
+ * The object store.
+ *
+ * Supabase Storage when configured, the filesystem otherwise. This selection
+ * is not cosmetic: the local store cannot work on a serverless host, where the
+ * filesystem is read-only apart from a `/tmp` that does not survive between
+ * invocations. Callers only ever see the `ObjectStore` interface.
+ */
 export function objectStore(): ObjectStore {
-  // An S3 implementation slots in here when R2/Supabase credentials exist;
-  // callers only ever see the ObjectStore interface.
-  return new LocalObjectStore();
+  return hasSupabaseStorage() ? new SupabaseObjectStore() : new LocalObjectStore();
 }
 
 /**

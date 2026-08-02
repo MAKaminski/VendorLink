@@ -1,12 +1,12 @@
 {
-  "id": "e4be343b-f768-4b56-b7ea-a8bb97e9a083",
+  "id": "4ac1aed8-6784-4e91-bce4-d4089ca05177",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.sessions": {
+    "vendorlink.sessions": {
       "name": "sessions",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -84,6 +84,7 @@
           "name": "sessions_user_id_users_id_fk",
           "tableFrom": "sessions",
           "tableTo": "users",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "user_id"
           ],
@@ -97,6 +98,7 @@
           "name": "sessions_tenant_id_tenants_id_fk",
           "tableFrom": "sessions",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -113,9 +115,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.tenant_members": {
+    "vendorlink.tenant_members": {
       "name": "tenant_members",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -194,6 +196,7 @@
           "name": "tenant_members_tenant_id_tenants_id_fk",
           "tableFrom": "tenant_members",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -207,6 +210,7 @@
           "name": "tenant_members_user_id_users_id_fk",
           "tableFrom": "tenant_members",
           "tableTo": "users",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "user_id"
           ],
@@ -223,9 +227,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.tenants": {
+    "vendorlink.tenants": {
       "name": "tenants",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -347,9 +351,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.users": {
+    "vendorlink.users": {
       "name": "users",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -414,9 +418,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vendor_profiles": {
+    "vendorlink.vendor_profiles": {
       "name": "vendor_profiles",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -707,6 +711,7 @@
           "name": "vendor_profiles_tenant_id_tenants_id_fk",
           "tableFrom": "vendor_profiles",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -723,9 +728,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.document_extractions": {
+    "vendorlink.document_extractions": {
       "name": "document_extractions",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -812,6 +817,7 @@
           "name": "document_extractions_tenant_id_tenants_id_fk",
           "tableFrom": "document_extractions",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -825,6 +831,7 @@
           "name": "document_extractions_document_id_documents_id_fk",
           "tableFrom": "document_extractions",
           "tableTo": "documents",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "document_id"
           ],
@@ -841,9 +848,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.documents": {
+    "vendorlink.documents": {
       "name": "documents",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -988,6 +995,7 @@
           "name": "documents_tenant_id_tenants_id_fk",
           "tableFrom": "documents",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -1004,9 +1012,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vendor_insurance": {
+    "vendorlink.vendor_insurance": {
       "name": "vendor_insurance",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1163,6 +1171,7 @@
           "name": "vendor_insurance_tenant_id_tenants_id_fk",
           "tableFrom": "vendor_insurance",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -1176,6 +1185,7 @@
           "name": "vendor_insurance_document_id_documents_id_fk",
           "tableFrom": "vendor_insurance",
           "tableTo": "documents",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "document_id"
           ],
@@ -1192,9 +1202,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vendor_licenses": {
+    "vendorlink.vendor_licenses": {
       "name": "vendor_licenses",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1280,6 +1290,7 @@
           "name": "vendor_licenses_tenant_id_tenants_id_fk",
           "tableFrom": "vendor_licenses",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -1293,6 +1304,7 @@
           "name": "vendor_licenses_document_id_documents_id_fk",
           "tableFrom": "vendor_licenses",
           "tableTo": "documents",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "document_id"
           ],
@@ -1309,9 +1321,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vendor_service_areas": {
+    "vendorlink.vendor_service_areas": {
       "name": "vendor_service_areas",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1394,6 +1406,7 @@
           "name": "vendor_service_areas_tenant_id_tenants_id_fk",
           "tableFrom": "vendor_service_areas",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -1410,9 +1423,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vendor_trades": {
+    "vendorlink.vendor_trades": {
       "name": "vendor_trades",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1481,6 +1494,7 @@
           "name": "vendor_trades_tenant_id_tenants_id_fk",
           "tableFrom": "vendor_trades",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -1497,9 +1511,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.email_suppressions": {
+    "vendorlink.email_suppressions": {
       "name": "email_suppressions",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "email": {
           "name": "email",
@@ -1535,9 +1549,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.form_schemas": {
+    "vendorlink.form_schemas": {
       "name": "form_schemas",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1655,6 +1669,7 @@
           "name": "form_schemas_pm_channel_id_pm_channels_id_fk",
           "tableFrom": "form_schemas",
           "tableTo": "pm_channels",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "pm_channel_id"
           ],
@@ -1671,9 +1686,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.global_contact_signals": {
+    "vendorlink.global_contact_signals": {
       "name": "global_contact_signals",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1748,6 +1763,7 @@
           "name": "global_contact_signals_pm_company_id_pm_companies_id_fk",
           "tableFrom": "global_contact_signals",
           "tableTo": "pm_companies",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "pm_company_id"
           ],
@@ -1761,6 +1777,7 @@
           "name": "global_contact_signals_source_tenant_id_tenants_id_fk",
           "tableFrom": "global_contact_signals",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "source_tenant_id"
           ],
@@ -1777,9 +1794,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.pm_channels": {
+    "vendorlink.pm_channels": {
       "name": "pm_channels",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1922,6 +1939,7 @@
           "name": "pm_channels_pm_company_id_pm_companies_id_fk",
           "tableFrom": "pm_channels",
           "tableTo": "pm_companies",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "pm_company_id"
           ],
@@ -1938,9 +1956,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.pm_companies": {
+    "vendorlink.pm_companies": {
       "name": "pm_companies",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -2110,6 +2128,7 @@
           "name": "pm_companies_submitted_by_tenant_id_tenants_id_fk",
           "tableFrom": "pm_companies",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "submitted_by_tenant_id"
           ],
@@ -2126,9 +2145,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.pm_contacts": {
+    "vendorlink.pm_contacts": {
       "name": "pm_contacts",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -2303,6 +2322,7 @@
           "name": "pm_contacts_pm_company_id_pm_companies_id_fk",
           "tableFrom": "pm_contacts",
           "tableTo": "pm_companies",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "pm_company_id"
           ],
@@ -2319,9 +2339,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.pm_requirements": {
+    "vendorlink.pm_requirements": {
       "name": "pm_requirements",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -2436,6 +2456,7 @@
           "name": "pm_requirements_pm_company_id_pm_companies_id_fk",
           "tableFrom": "pm_requirements",
           "tableTo": "pm_companies",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "pm_company_id"
           ],
@@ -2452,9 +2473,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.connection_runs": {
+    "vendorlink.connection_runs": {
       "name": "connection_runs",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -2572,6 +2593,7 @@
           "name": "connection_runs_tenant_id_tenants_id_fk",
           "tableFrom": "connection_runs",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -2585,6 +2607,7 @@
           "name": "connection_runs_pm_company_id_pm_companies_id_fk",
           "tableFrom": "connection_runs",
           "tableTo": "pm_companies",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "pm_company_id"
           ],
@@ -2601,9 +2624,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.connection_tasks": {
+    "vendorlink.connection_tasks": {
       "name": "connection_tasks",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -2793,7 +2816,7 @@
             }
           ],
           "isUnique": true,
-          "where": "\"connection_tasks\".\"kind\" = 'PORTAL' AND \"connection_tasks\".\"status\" = 'succeeded'",
+          "where": "\"vendorlink\".\"connection_tasks\".\"kind\" = 'PORTAL' AND \"vendorlink\".\"connection_tasks\".\"status\" = 'succeeded'",
           "concurrently": false,
           "method": "btree",
           "with": {}
@@ -2804,6 +2827,7 @@
           "name": "connection_tasks_run_id_connection_runs_id_fk",
           "tableFrom": "connection_tasks",
           "tableTo": "connection_runs",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "run_id"
           ],
@@ -2817,6 +2841,7 @@
           "name": "connection_tasks_tenant_id_tenants_id_fk",
           "tableFrom": "connection_tasks",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -2830,6 +2855,7 @@
           "name": "connection_tasks_resolved_contact_id_pm_contacts_id_fk",
           "tableFrom": "connection_tasks",
           "tableTo": "pm_contacts",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "resolved_contact_id"
           ],
@@ -2843,6 +2869,7 @@
           "name": "connection_tasks_pm_channel_id_pm_channels_id_fk",
           "tableFrom": "connection_tasks",
           "tableTo": "pm_channels",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "pm_channel_id"
           ],
@@ -2856,6 +2883,7 @@
           "name": "connection_tasks_form_schema_id_form_schemas_id_fk",
           "tableFrom": "connection_tasks",
           "tableTo": "form_schemas",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "form_schema_id"
           ],
@@ -2872,9 +2900,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.domain_throttle": {
+    "vendorlink.domain_throttle": {
       "name": "domain_throttle",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "domain": {
           "name": "domain",
@@ -2904,9 +2932,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.email_messages": {
+    "vendorlink.email_messages": {
       "name": "email_messages",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -3053,6 +3081,7 @@
           "name": "email_messages_task_id_connection_tasks_id_fk",
           "tableFrom": "email_messages",
           "tableTo": "connection_tasks",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "task_id"
           ],
@@ -3066,6 +3095,7 @@
           "name": "email_messages_tenant_id_tenants_id_fk",
           "tableFrom": "email_messages",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -3082,9 +3112,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.pm_replies": {
+    "vendorlink.pm_replies": {
       "name": "pm_replies",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -3193,6 +3223,7 @@
           "name": "pm_replies_pm_company_id_pm_companies_id_fk",
           "tableFrom": "pm_replies",
           "tableTo": "pm_companies",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "pm_company_id"
           ],
@@ -3206,6 +3237,7 @@
           "name": "pm_replies_tenant_id_tenants_id_fk",
           "tableFrom": "pm_replies",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -3219,6 +3251,7 @@
           "name": "pm_replies_run_id_connection_runs_id_fk",
           "tableFrom": "pm_replies",
           "tableTo": "connection_runs",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "run_id"
           ],
@@ -3235,9 +3268,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.portal_field_writes": {
+    "vendorlink.portal_field_writes": {
       "name": "portal_field_writes",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -3332,6 +3365,7 @@
           "name": "portal_field_writes_task_id_connection_tasks_id_fk",
           "tableFrom": "portal_field_writes",
           "tableTo": "connection_tasks",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "task_id"
           ],
@@ -3345,6 +3379,7 @@
           "name": "portal_field_writes_tenant_id_tenants_id_fk",
           "tableFrom": "portal_field_writes",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -3361,9 +3396,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.send_counters": {
+    "vendorlink.send_counters": {
       "name": "send_counters",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "tenant_id": {
           "name": "tenant_id",
@@ -3413,6 +3448,7 @@
           "name": "send_counters_tenant_id_tenants_id_fk",
           "tableFrom": "send_counters",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -3429,9 +3465,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.task_events": {
+    "vendorlink.task_events": {
       "name": "task_events",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -3513,6 +3549,7 @@
           "name": "task_events_task_id_connection_tasks_id_fk",
           "tableFrom": "task_events",
           "tableTo": "connection_tasks",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "task_id"
           ],
@@ -3526,6 +3563,7 @@
           "name": "task_events_tenant_id_tenants_id_fk",
           "tableFrom": "task_events",
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsFrom": [
             "tenant_id"
           ],
@@ -3544,7 +3582,9 @@
     }
   },
   "enums": {},
-  "schemas": {},
+  "schemas": {
+    "vendorlink": "vendorlink"
+  },
   "sequences": {},
   "roles": {},
   "policies": {},

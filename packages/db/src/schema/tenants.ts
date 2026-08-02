@@ -2,13 +2,13 @@ import {
   boolean,
   index,
   integer,
-  pgTable,
   text,
   timestamp,
   uniqueIndex,
   uuid,
 } from 'drizzle-orm/pg-core';
 import { ENTITY_TYPES, TENANT_ROLES, US_STATES } from '@vendorlink/core';
+import { vendorlink } from './schema';
 import { enumColumn, jsonbColumn } from './helpers';
 import type { HoursOfOperation, RemitTo } from '@vendorlink/core';
 
@@ -17,7 +17,7 @@ import type { HoursOfOperation, RemitTo } from '@vendorlink/core';
  * `tenant_id` and is only ever reached through the repository layer, which
  * makes the scoping predicate impossible to forget.
  */
-export const tenants = pgTable(
+export const tenants = vendorlink.table(
   'tenants',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -51,7 +51,7 @@ export const tenants = pgTable(
   (t) => [uniqueIndex('tenants_external_org_id_idx').on(t.externalOrgId)],
 );
 
-export const users = pgTable(
+export const users = vendorlink.table(
   'users',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -66,7 +66,7 @@ export const users = pgTable(
 );
 
 /** Membership carries the role; this is the model Clerk orgs would provide. */
-export const tenantMembers = pgTable(
+export const tenantMembers = vendorlink.table(
   'tenant_members',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -85,7 +85,7 @@ export const tenantMembers = pgTable(
   ],
 );
 
-export const sessions = pgTable(
+export const sessions = vendorlink.table(
   'sessions',
   {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -106,7 +106,7 @@ export const sessions = pgTable(
   ],
 );
 
-export const vendorProfiles = pgTable(
+export const vendorProfiles = vendorlink.table(
   'vendor_profiles',
   {
     id: uuid('id').primaryKey().defaultRandom(),

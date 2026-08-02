@@ -13,9 +13,13 @@ export interface CreateDatabaseOptions {
 export function databaseUrl(explicit?: string): string {
   const url = explicit ?? process.env.DATABASE_URL;
   if (!url) {
+    // The message names both environments because this throws identically in
+    // both, and a deployed app showing "run scripts/dev-db.sh" sends the
+    // reader looking in entirely the wrong place.
     throw new Error(
-      'DATABASE_URL is not set. Start the local cluster with `scripts/dev-db.sh start` ' +
-        'and export the URL it prints.',
+      'DATABASE_URL is not set.\n' +
+        '  Deployed: add it to the hosting environment — see docs/DEPLOYMENT.md.\n' +
+        '  Local: run `scripts/dev-db.sh start` and export the URL it prints.',
     );
   }
   return url;

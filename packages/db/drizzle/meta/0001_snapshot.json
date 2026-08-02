@@ -1,12 +1,12 @@
 {
-  "id": "987bed9c-af6f-445f-be58-06147641ce74",
-  "prevId": "e4be343b-f768-4b56-b7ea-a8bb97e9a083",
+  "id": "454d63f7-2b42-491a-b171-db4786330cae",
+  "prevId": "4ac1aed8-6784-4e91-bce4-d4089ca05177",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.sessions": {
+    "vendorlink.sessions": {
       "name": "sessions",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -87,6 +87,7 @@
             "user_id"
           ],
           "tableTo": "users",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -100,6 +101,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -113,9 +115,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.tenant_members": {
+    "vendorlink.tenant_members": {
       "name": "tenant_members",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -197,6 +199,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -210,6 +213,7 @@
             "user_id"
           ],
           "tableTo": "users",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -223,9 +227,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.tenants": {
+    "vendorlink.tenants": {
       "name": "tenants",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -347,9 +351,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.users": {
+    "vendorlink.users": {
       "name": "users",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -414,9 +418,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vendor_profiles": {
+    "vendorlink.vendor_profiles": {
       "name": "vendor_profiles",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -710,6 +714,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -723,9 +728,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.document_extractions": {
+    "vendorlink.document_extractions": {
       "name": "document_extractions",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -815,6 +820,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -828,6 +834,7 @@
             "document_id"
           ],
           "tableTo": "documents",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -841,9 +848,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.documents": {
+    "vendorlink.documents": {
       "name": "documents",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -991,6 +998,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -1004,9 +1012,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vendor_insurance": {
+    "vendorlink.vendor_insurance": {
       "name": "vendor_insurance",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1166,6 +1174,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -1179,6 +1188,7 @@
             "document_id"
           ],
           "tableTo": "documents",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -1192,9 +1202,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vendor_licenses": {
+    "vendorlink.vendor_licenses": {
       "name": "vendor_licenses",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1283,6 +1293,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -1296,6 +1307,7 @@
             "document_id"
           ],
           "tableTo": "documents",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -1309,9 +1321,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vendor_service_areas": {
+    "vendorlink.vendor_service_areas": {
       "name": "vendor_service_areas",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1397,6 +1409,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -1410,9 +1423,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vendor_trades": {
+    "vendorlink.vendor_trades": {
       "name": "vendor_trades",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1484,6 +1497,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -1497,9 +1511,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.email_suppressions": {
+    "vendorlink.email_suppressions": {
       "name": "email_suppressions",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "email": {
           "name": "email",
@@ -1535,9 +1549,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.form_schemas": {
+    "vendorlink.form_schemas": {
       "name": "form_schemas",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1658,6 +1672,7 @@
             "pm_channel_id"
           ],
           "tableTo": "pm_channels",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -1671,9 +1686,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.global_contact_signals": {
+    "vendorlink.global_contact_signals": {
       "name": "global_contact_signals",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1751,6 +1766,7 @@
             "pm_company_id"
           ],
           "tableTo": "pm_companies",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -1764,6 +1780,7 @@
             "source_tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -1777,9 +1794,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.pm_channels": {
+    "vendorlink.pm_channels": {
       "name": "pm_channels",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -1925,6 +1942,7 @@
             "pm_company_id"
           ],
           "tableTo": "pm_companies",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -1938,9 +1956,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.pm_companies": {
+    "vendorlink.pm_companies": {
       "name": "pm_companies",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -2113,6 +2131,7 @@
             "submitted_by_tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -2126,9 +2145,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.pm_contacts": {
+    "vendorlink.pm_contacts": {
       "name": "pm_contacts",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -2306,6 +2325,7 @@
             "pm_company_id"
           ],
           "tableTo": "pm_companies",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -2319,9 +2339,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.pm_requirements": {
+    "vendorlink.pm_requirements": {
       "name": "pm_requirements",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -2439,6 +2459,7 @@
             "pm_company_id"
           ],
           "tableTo": "pm_companies",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -2452,9 +2473,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.connection_runs": {
+    "vendorlink.connection_runs": {
       "name": "connection_runs",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -2575,6 +2596,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -2588,6 +2610,7 @@
             "pm_company_id"
           ],
           "tableTo": "pm_companies",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -2601,9 +2624,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.connection_tasks": {
+    "vendorlink.connection_tasks": {
       "name": "connection_tasks",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -2795,7 +2818,7 @@
           "isUnique": true,
           "with": {},
           "method": "btree",
-          "where": "\"connection_tasks\".\"kind\" = 'PORTAL' AND \"connection_tasks\".\"status\" = 'succeeded'",
+          "where": "\"vendorlink\".\"connection_tasks\".\"kind\" = 'PORTAL' AND \"vendorlink\".\"connection_tasks\".\"status\" = 'succeeded'",
           "concurrently": false
         }
       },
@@ -2807,6 +2830,7 @@
             "run_id"
           ],
           "tableTo": "connection_runs",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -2820,6 +2844,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -2833,6 +2858,7 @@
             "resolved_contact_id"
           ],
           "tableTo": "pm_contacts",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -2846,6 +2872,7 @@
             "pm_channel_id"
           ],
           "tableTo": "pm_channels",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -2859,6 +2886,7 @@
             "form_schema_id"
           ],
           "tableTo": "form_schemas",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -2872,9 +2900,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.domain_throttle": {
+    "vendorlink.domain_throttle": {
       "name": "domain_throttle",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "domain": {
           "name": "domain",
@@ -2904,9 +2932,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.email_messages": {
+    "vendorlink.email_messages": {
       "name": "email_messages",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -3056,6 +3084,7 @@
             "task_id"
           ],
           "tableTo": "connection_tasks",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -3069,6 +3098,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -3082,9 +3112,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.pm_replies": {
+    "vendorlink.pm_replies": {
       "name": "pm_replies",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -3196,6 +3226,7 @@
             "pm_company_id"
           ],
           "tableTo": "pm_companies",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -3209,6 +3240,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -3222,6 +3254,7 @@
             "run_id"
           ],
           "tableTo": "connection_runs",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -3235,9 +3268,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.portal_field_writes": {
+    "vendorlink.portal_field_writes": {
       "name": "portal_field_writes",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -3335,6 +3368,7 @@
             "task_id"
           ],
           "tableTo": "connection_tasks",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -3348,6 +3382,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -3361,9 +3396,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.send_counters": {
+    "vendorlink.send_counters": {
       "name": "send_counters",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "tenant_id": {
           "name": "tenant_id",
@@ -3416,6 +3451,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -3429,9 +3465,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.task_events": {
+    "vendorlink.task_events": {
       "name": "task_events",
-      "schema": "",
+      "schema": "vendorlink",
       "columns": {
         "id": {
           "name": "id",
@@ -3516,6 +3552,7 @@
             "task_id"
           ],
           "tableTo": "connection_tasks",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -3529,6 +3566,7 @@
             "tenant_id"
           ],
           "tableTo": "tenants",
+          "schemaTo": "vendorlink",
           "columnsTo": [
             "id"
           ],
@@ -3544,7 +3582,9 @@
     }
   },
   "enums": {},
-  "schemas": {},
+  "schemas": {
+    "vendorlink": "vendorlink"
+  },
   "views": {},
   "sequences": {},
   "roles": {},
